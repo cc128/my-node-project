@@ -3,8 +3,15 @@ let onLineUserIds = []; // 在线用户id
 
 const S = server => {
     const { Server } = require("socket.io");
-    const io = new Server(server);
+    const io = new Server(server, {
+        cors: {
+            origin: "*",
+            methods: ['GET', 'POST']
+        }
+
+    });
     io.on("connection", socket => {
+        console.log(111)
         // 返回连接着id
         socket.emit("socketId", {
             socketId: socket.id,
