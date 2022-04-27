@@ -1,4 +1,3 @@
-// const fs = require("fs");
 const http = require("http");
 
 const Koa = require("koa");
@@ -13,5 +12,14 @@ socket.S(httpServer);
 
 const static = require("koa-static");
 app.use(static(__dirname));
+
+// let date = new Date().toLocaleDateString();
+// date = date.replace("/", "-").replace("/", "-");
+// fs.mkdir(path.join(__dirname, date), (err) => {
+//     if (err) {
+//         return
+//     }
+//     console.log('创建成功!');
+// });
 
 // app.listen(9527);

@@ -1,6 +1,6 @@
 let userList = []; //用户列表
 let onLineUserIds = []; // 在线用户id
-
+let chatRoom = require("./chatRoom.js")
 const S = server => {
     const { Server } = require("socket.io");
     const io = new Server(server, {
@@ -11,7 +11,7 @@ const S = server => {
 
     });
     io.on("connection", socket => {
-        console.log(111)
+        chatRoom.chatRoom(socket)
         // 返回连接着id
         socket.emit("socketId", {
             socketId: socket.id,
