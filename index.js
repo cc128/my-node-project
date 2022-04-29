@@ -3,6 +3,7 @@ const http = require("http");
 const Koa = require("koa");
 const app = new Koa();
 
+const router = require("./router");
 
 const httpServer = http.Server(app.callback());
 httpServer.listen(7005);
@@ -11,7 +12,14 @@ const socket = require("./socket/index");
 socket.S(httpServer);
 
 const static = require("koa-static");
-app.use(static(__dirname));
+
+const cors = require('koa2-cors');
+const bodyParser = require("koa-bodyparser");
+
+app.use(static(__dirname))
+    .use(cors())
+    .use(bodyParser())
+    .use(router.routes())
 
 // let date = new Date().toLocaleDateString();
 // date = date.replace("/", "-").replace("/", "-");
