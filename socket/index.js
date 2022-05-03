@@ -8,7 +8,6 @@ const S = server => {
             origin: "*",
             methods: ['GET', 'POST']
         }
-
     });
     io.on("connection", socket => {
         chatRoom.chatRoom(socket)
@@ -18,12 +17,13 @@ const S = server => {
             userList: userList
         });
         socket.on("linkUser", data => {
-            console.log(data, 33333)
+            console.log(data, "有人连接")
         })
         // onLineUserIdsFn(socket.adapter.rooms); // 在线用户id --方法
     })
 }
-exports.S = S;
+module.exports = S;
+
 // 在线用户id --方法
 let onLineUserIdsFn = (rooms) => {
     let u = rooms.keys();
